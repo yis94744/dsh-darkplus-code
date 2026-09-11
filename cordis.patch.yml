@@ -1,0 +1,16 @@
+# dsh-darkplus-code bundle patch.
+#
+# Applied over the dsh-web-app layer. This bundle contributes ONE host row: the
+# plugin that persists the user's code-block appearance settings to
+# ~/.dsh-darkplus-code/config.json and serves them over a same-origin route.
+# The browser half arrives through package.json's `dsh.client` manifest (it
+# applies the palette/font CSS and draws the settings row).
+#
+# A patch replaces the targeted row's whole `config`, so only additive `insert`
+# rows appear here — no shipped row is ever overridden.
+
+- insert:
+    # Host half. `webServer` is optional so this bundle also loads in headless
+    # profiles without failing; the host guards its absence with ctx.get.
+    - id: darkplus-code
+      name: 'dsh-darkplus-code'
